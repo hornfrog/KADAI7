@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Syukuhaku</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+   <% if flash[:notice] %>
+    <div class="notifiation is-info">
+     <p class="notice"><%= notice %></p>
+    </div>
+   <% end %>
+
+   <% if flash[:alert] %>
+    <div class="notifiation is-danger">
+     <p class="alert"><%= alert %></p>
+    </div>
+   <% end %>
+
+   <% if user_signed_in? %>
+     <%= button_to "ログアウト", destroy_user_session_path, method: :delete, calss: "button" %>
+   <% else %>
+     <%= link_to "ログイン", new_user_session_path, calss: "button" %>
+     <%= link_to "新規登録", new_user_registration_path, calss: "button" %>
+   <% end %>
+   
+    <%= yield %>
+  </body>
+</html>
