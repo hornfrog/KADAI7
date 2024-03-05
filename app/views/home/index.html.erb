@@ -1,6 +1,10 @@
+<% if current_user %>
+  <%= link_to 'アカウント設定', user_path(current_user) %>
+<% else %>
+  <%= link_to '', new_user_session_path %>
+<% end %>
 
-<%= link_to "アカウント設定", edit_user_registration_path %>
-<%= link_to "アカウント設定", user_path(current_user) %>
+
 <h1>ログイン後の画面</h1>
 <p>ログインユーザー名＆メニュー予定 ・施設の新規登録・予約済み一覧・登録済み一覧・アカウント設定・ログアウト</p>
 <p>検索機能後で実装予定</p>

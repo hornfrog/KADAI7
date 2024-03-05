@@ -1,0 +1,9 @@
+<h1>プロフィール</h1> <%= link_to 'アカウント設定', user_path(current_user) %>
+<%= link_to '編集', edit_user_profile_path(current_user) %>
+<h3>アイコン画像</h3>
+<%= attachment_image_tag @user, :profile_image, fallback: "no-image.png" %>
+<h3>名前</h3>
+<%= @user.username %>
+<h3>自己紹介</h3>
+<%= @user.inspect %>
+<%= @user.profile %>

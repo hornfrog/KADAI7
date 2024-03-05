@@ -1,0 +1,21 @@
+<table>
+ <tbody>
+<%= form_with model: @user do |f| %>
+    <tr>
+     <th><%= f.label :username %></th>
+      <td><%= f.text_field :username %></td>
+    </tr>
+    <tr>
+    <th><%= f.label :profile %></th>
+    <td><%= f.text_area :profile %></td>
+    </tr>
+    <tr>
+  </tbody>
+</table>
+     
+    <ul>
+    <%= f.submit '保存' %>
+      <%= link_to "キャンセル", user_profile_path(current_user) %>
+    </ul>
+    </tr>
+<% end %>
