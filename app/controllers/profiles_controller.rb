@@ -10,9 +10,9 @@ class ProfilesController < ApplicationController
 
   def update
     @user = current_user
-    if @user.update(params.require(:user).permit(:username, :profile))
+    if @user.update(params.require(:user).permit(:profile_image, :username, :profile))
       flash[:notice] = "ユーザー情報を編集しました"
-      redirect_to user_profile_path(@user.profile)
+      redirect_to user_profile_path(@user)
     else
       render :edit
     end  

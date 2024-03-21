@@ -2,14 +2,20 @@
  <tbody>
 <%= form_with model: @user, url: user_profile_path(@user), method: :patch do |f| %>
     <tr>
-     <th><%= f.label :username %></th>
+     <th><%= f.label :profile_image %></th>
+     <td><%= f.file_field :profile_image %></td>
+    </tr> 
+   
+    <tr>
+      <th><%= f.label :username %></th><br>
       <td><%= f.text_field :username %></td>
     </tr>
+    
     <tr>
-    <th><%= f.label :profile %></th>
-    <td><%= f.text_area :profile %></td>
+     <th><%= f.label :profile %></th>
+     <td><%= f.text_area :profile %></td>
     </tr>
-    <tr>
+    
   </tbody>
 </table>
      

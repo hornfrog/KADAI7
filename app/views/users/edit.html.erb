@@ -1,2 +1,27 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<table>
+ <tbody>
+<%= form_with model: @user, url: user_path, local:true, method: :put  do |f| %>
+    <tr>
+     <th><%= f.label :email %></th>
+     <td><%= f.email_field :email %></td>
+    </tr> 
+   
+    <tr>
+      <th><%= f.label :password %></th><br>
+      <td><%= f.password_field :password %></td>
+    </tr>
+    
+    <tr>
+     <th><%= f.label :password_confirmation %></th>
+     <td><%= f.password_field :password_confirmation %></td>
+    </tr>
+  </tbody>
+</table>
+   <% if current_user %>  
+    <ul>
+    <%= f.submit '保存' %>
+      <%= link_to "キャンセル", edit_user_path(current_user.id) %>
+    </ul>
+   <% end %> 
+    </tr>
+<% end %>

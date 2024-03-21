@@ -1,3 +1,19 @@
 // Place all the styles related to the profiles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.profile-wrapper {
+    display: flex;
+  }
+  
+  .account-settings {
+    width: 30%; /* 左側の幅を調整 */
+  }
+  
+  .profile-info {
+    width: 60%; /* 中央の幅を調整 */
+  }
+  
+  .profile-info h2 {
+    font-size: 30px; /* 例: フォントサイズを24ピクセルに変更 */
+  }
+  

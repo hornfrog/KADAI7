@@ -1,5 +1,6 @@
 
 <h1>アカウント</h1> 
+<%= link_to "アカウント設定", user_path(current_user) %>
 <%= link_to 'プロフィール', user_profile_path(current_user) %>
 <%= link_to '編集', edit_user_path(current_user) %>
 
@@ -7,3 +8,4 @@
 <%= @user.email %>
 <h3>パスワード</h3>
 <%= @user.password %>
+*********
