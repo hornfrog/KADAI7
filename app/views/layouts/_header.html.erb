@@ -1,13 +1,13 @@
 <% if user_signed_in?  %>
   <li class="dropdown">
   <a href="#" class="dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-  <%= attachment_image_tag @user, :profile_image, fallback: "no-image.png", class: "avater" %>
+  <%= attachment_image_tag current_user, :profile_image, fallback: "no-image.png", class: "avater" %>
   <%= current_user.username %>
 </a>
     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <li><%= link_to "施設の新規登録" %></li>
-      <li><%= link_to "予約済み一覧" %></li>
-      <li><%= link_to "登録済み一覧" %></li>
+      <li><%= link_to "施設の新規登録", new_room_path %></li>
+      <li><%= link_to "予約済み一覧", reservations_path(current_user) %></li>
+      <li><%= link_to "登録済み一覧",  rooms_path(current_user)%></li>
       <li><%= link_to "アカウント設定", user_path(current_user) %></li>
       <li><%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
     </ul>

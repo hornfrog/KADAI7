@@ -1,7 +1,30 @@
 <% if user_signed_in? %>
   <!-- ログイン後の表示 -->
   <p>ログイン後の画面できてるよ</p>
-  
+  <%= form_tag(rooms_path, method: "get") do %>
+    <%= text_field_tag :area, params[:area], placeholder: "エリア名を入力" %><br>
+    <%= submit_tag "検索" %>
+    <p>おすすめのエリア<p>
+    <div style="display: flex; flex-wrap: wrap;">
+  <div style="margin-right: 20px;">
+    <%= link_to image_tag("gpfd_28fcd5f573fbeeec1900f7ce73166320958aede6.jpg", width: 300, height: 300), search_by_area_rooms_path(area: "東京"), method: :get %>
+    <p style="font-size: 25px;">東京</p>
+  </div>
+  <div style="margin-right: 20px;">
+    <%= link_to image_tag("oosaka.jpg", width: 300, height: 300), search_by_area_rooms_path(area: "大阪"), method: :get %>
+    <p style="font-size: 25px;">大阪</p>
+  </div>
+  <div style="margin-right: 20px;">
+    <%= link_to image_tag("01-9.jpg", width: 300, height: 300), search_by_area_rooms_path(area: "京都"), method: :get %>
+    <p style="font-size: 25px;">京都</p>
+  </div>
+  <div>
+    <%= link_to image_tag("31.jpg", width: 300, height: 300), search_by_area_rooms_path(area: "札幌"), method: :get %>
+    <p style="font-size: 25px;">札幌</p>
+  </div>
+</div>
+
+    <% end %>
 <% else %>
   <!-- ログイン前の表示 -->
   <p>ログインしていない</p>
@@ -9,5 +32,5 @@
 
 
 
-<p>検索機能後で実装予定</p>
+
 

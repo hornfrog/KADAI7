@@ -5,4 +5,19 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update] do
    resources :profiles, only: [:show, :edit, :update]
   end
+
+  resources :rooms do
+    collection do
+      get 'search', to: 'rooms#search', as: 'search'
+      get 'search_by_area', to: 'rooms#search_by_area', as: 'search_by_area'
+    end
+    resources :reservations, only: [:index, :new, :create]
+  end  
+
+  resources :reservations, only: [:index] do
+    member do
+      get 'confirm'
+      patch 'confirm', to: 'reservations#confirm_reservation'
+    end
+  end
 end
