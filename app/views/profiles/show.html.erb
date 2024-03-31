@@ -10,10 +10,14 @@
  <div class="profile-info">
   <h2>プロフィール</h2><%= link_to '編集', edit_user_profile_path(current_user) %>
   <h3>アイコン画像</h3>
-  <%= attachment_image_tag @user, :profile_image, fallback: "no-image.png" %>
+  <div class="profile-image">
+   <%= attachment_image_tag @user, :profile_image, fallback: "no-image.png" %>
+   </div> 
   <h3>名前</h3>
   <%= @user.username %>
   <h3>自己紹介</h3>
   <%= @user.profile %>
  </div>
 </div>
+
+<%= render 'layouts/footer' %>

@@ -1,11 +1,13 @@
 <% if user_signed_in? %>
   <!-- ログイン後の表示 -->
-  <p>ログイン後の画面できてるよ</p>
-  <%= form_tag(rooms_path, method: "get") do %>
+  
+  <%= form_tag(rooms_path, method: "get", style: "text-align: center; margin-top: 70px;") do %>
     <%= text_field_tag :area, params[:area], placeholder: "エリア名を入力" %><br>
     <%= submit_tag "検索" %>
+    <div style="text-align: center; margin-top: 70px;">
     <p>おすすめのエリア<p>
-    <div style="display: flex; flex-wrap: wrap;">
+    </div>
+    <div style="display: flex; flex-wrap: wrap; margin-top: 80px;">
   <div style="margin-right: 20px;">
     <%= link_to image_tag("gpfd_28fcd5f573fbeeec1900f7ce73166320958aede6.jpg", width: 300, height: 300), search_by_area_rooms_path(area: "東京"), method: :get %>
     <p style="font-size: 25px;">東京</p>
@@ -27,9 +29,10 @@
     <% end %>
 <% else %>
   <!-- ログイン前の表示 -->
-  <p>ログインしていない</p>
+  
 <% end %>
 
+<%= render 'layouts/footer' %>
 
 
 

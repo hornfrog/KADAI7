@@ -2,17 +2,17 @@
  <tbody>
 <%= form_with model: @user, url: user_path, local:true, method: :put  do |f| %>
     <tr>
-     <th><%= f.label :email %></th>
+     <th><%= f.label :メールアドレス %></th>
      <td><%= f.email_field :email %></td>
     </tr> 
    
     <tr>
-      <th><%= f.label :password %></th><br>
+      <th><%= f.label :パスワード %></th><br>
       <td><%= f.password_field :password %></td>
     </tr>
     
     <tr>
-     <th><%= f.label :password_confirmation %></th>
+     <th><%= f.label :パスワード確認用 %></th>
      <td><%= f.password_field :password_confirmation %></td>
     </tr>
   </tbody>
@@ -25,3 +25,5 @@
    <% end %> 
     </tr>
 <% end %>
+
+<%= render 'layouts/footer' %>

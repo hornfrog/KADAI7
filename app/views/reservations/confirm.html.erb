@@ -8,5 +8,7 @@
 
 <%= form_with(model: @reservation, url: confirm_reservation_path(@reservation), method: :patch) do |form| %>
   <%= form.submit  "予約を確定", class: "btn btn-primary" %>
-  <%= link_to "キャンセル", room_path(@reservation.room_id) %>
 <% end %>
+<%= form_tag(cancel_reservation_path(@reservation), method: :delete) do %>
+  <%= submit_tag "予約をキャンセル", class: "btn btn-danger", data: { confirm: "本当に予約をキャンセルしますか？" } %>
+<% end %> 

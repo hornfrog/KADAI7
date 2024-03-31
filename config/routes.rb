@@ -11,12 +11,13 @@ Rails.application.routes.draw do
       get 'search', to: 'rooms#search', as: 'search'
       get 'search_by_area', to: 'rooms#search_by_area', as: 'search_by_area'
     end
-    resources :reservations, only: [:index, :new, :create]
+    resources :reservations, only: [:index, :new, :create, :destroy]
   end  
 
   resources :reservations, only: [:index] do
     member do
       get 'confirm'
+      delete 'cancel', to: 'reservations#cancel'
       patch 'confirm', to: 'reservations#confirm_reservation'
     end
   end

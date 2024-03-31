@@ -11,6 +11,11 @@ class ReservationsController < ApplicationController
   end
  
   def create
+    if params[:commit] == "キャンセル"  
+        redirect_to root_path
+        return  
+      end
+
     @reservation = @room.reservations.build(reservation_params)
     @reservation.user = current_user
     @reservation.total_amount = calculate_total_price(@reservation)
@@ -24,6 +29,13 @@ class ReservationsController < ApplicationController
   def show
     @reservation = Reservation.find(params[:id])
   end  
+
+  def destroy
+    @reservation = Reservation.find(params[:id])
+    @reservation.destroy
+    flash[:notice] = "予約がキャンセルされました"
+    redirect_to reservations_path
+  end
   
   def confirm
     @reservation = Reservation.find(params[:id])
@@ -39,6 +51,16 @@ class ReservationsController < ApplicationController
       flash[:alert] = "予約の確定に失敗しました"
       render 'confirm'
     end
+  end
+
+  def cancel
+    @reservation = Reservation.find(params[:id])
+    if @reservation.destroy
+      flash[:notice] = "予約がキャンセルされました"
+    else
+      flash[:alert] = "予約のキャンセルに失敗しました"
+    end
+    redirect_to reservations_path
   end
 
   private

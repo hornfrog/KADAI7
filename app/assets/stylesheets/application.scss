@@ -17,12 +17,30 @@
  @import "bulma";
 
  .header {
-   background-color: blue;
- }
+  background-color: rgb(4, 4, 76);
+  width: 100%; 
+  margin: 0;
+  height: 70px;
+  padding: 10px; 
+}
+
+.footer {
+  background-color: rgb(4, 4, 76);
+  position: fixed; 
+  bottom: 0;
+  left: 0;
+  width: 100%; 
+  padding: 10px;
+}
+.dropdown {
+  position: absolute; 
+  top: 10px; 
+  right: 0; 
+}
 
  .button-registration {
     background-color: #ffA500;
-    color: white; /* 文字の色を白に変更 */
+    color: white; 
     font-weight: bold;
  }
 
