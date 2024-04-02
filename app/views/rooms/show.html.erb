@@ -1,0 +1,37 @@
+<%= form_tag(rooms_path, method: "get") do %>
+    <%= text_field_tag :area, params[:area], placeholder: "エリア名を入力" %>
+    <%= text_field_tag :keyword, params[:keyword], placeholder: "キーワード名を入力" %>
+    <%= submit_tag "検索" %>
+  <% end %>
+  
+<div>
+<h1><%= @room.name %></h1>
+<p><%= link_to "←戻る", :back %></p>
+<p><strong>施設名:</strong> <%= @room.name %></p>
+<p><strong>説明:</strong> <%= @room.description %></p>
+<p><strong>料金:</strong> ￥<%= @room.price.to_i  %></p>
+<p><strong>住所:</strong> <%= @room.address %></p>
+<div class="image-wrapper1">
+<%= attachment_image_tag @room, :room_image, fallback: "default-image-4e0ac6b8d01335b5b22fe6586af13644ae51dddb6aeabf35b9174e80f13cd09d.png" %>
+</div>
+
+<%= form_with(model: [@room, @reservation], url: room_reservations_path(@room)) do |f| %>
+  
+    <%= f.label :チェックイン %>
+    <%= f.date_field :check_in_date %>
+
+    <%= f.label :チェックアウト %>
+    <%= f.date_field :check_out_date %>
+
+    <%= f.label :人数 %>
+    <%= f.number_field :num_of_guests %>
+  
+  
+  <%= render "shared/error_messages_custom", obj: @reservation %>
+  
+  <p><%= f.submit :"予約する" %></p>
+  
+  <% end %>
+
+  <%= render 'layouts/footer' %>
+

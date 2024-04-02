@@ -1,0 +1,34 @@
+<h1>登録済み一覧</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>画像</th>
+      <th>施設名</th>
+      <th>紹介文</th>
+      <th>料金</th>
+      <th>作成日</th>
+    </tr>
+  </thead>
+
+  </thead>
+  <tbody>
+    <% current_user.rooms.each do |room| %>
+      <tr> 
+       <td>
+       <%= link_to room_path(room) do %>
+        <div class="image-wrapper">
+         <%= attachment_image_tag room, :room_image, fallback: "default-image-4e0ac6b8d01335b5b22fe6586af13644ae51dddb6aeabf35b9174e80f13cd09d.png" %>
+        </div>
+        <% end %>
+         </td>
+        <td><%= link_to room.name, room_path(room) %></td>
+        <td><%= room.description %></td>
+        <td>￥<%= room.price.to_i  %></td>
+        <td><%= room.created_at.to_s(:datetime_jp) %></td>
+        </tr>
+        <% end %>
+   </tbody>
+  </table>        
+
+  <%= render 'layouts/footer' %>

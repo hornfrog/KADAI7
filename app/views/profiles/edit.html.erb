@@ -1,0 +1,30 @@
+<table>
+ <tbody>
+<%= form_with model: @user, url: user_profile_path(@user), method: :patch do |f| %>
+    <tr>
+     <th><%= f.label :アイコン画像 %></th>
+     <td><%= f.file_field :profile_image %></td>
+    </tr> 
+   
+    <tr>
+      <th><%= f.label :名前 %></th><br>
+      <td><%= f.text_field :username %></td>
+    </tr>
+    
+    <tr>
+     <th><%= f.label :自己紹介 %></th>
+     <td><%= f.text_area :profile %></td>
+    </tr>
+    
+  </tbody>
+</table>
+     
+    <ul>
+    <%= f.submit '保存' %>
+      <%= link_to "キャンセル", user_profile_path(current_user) %>
+    </ul>
+    </tr>
+<% end %>
+
+
+<%= render 'layouts/footer' %>
