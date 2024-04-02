@@ -4,14 +4,25 @@ class ReservationsController < ApplicationController
   def index
     @reservations = Reservation.all
     @reservations = current_user.reservations.includes(:room)
+    puts @reservation.inspect # @reservation
   end
 
   def new
-    @reservation = current_user.reservations.build
+    @room = Room.find(params[:room_id])
+    @reservation = @room.reservations.build
   end
  
   def create
-    if params[:commit] == "キャンセル"  
+    num_of_guests = params[:reservation][:num_of_guests].to_i
+    if num_of_guests.blank? || num_of_guests <= 0
+      flash[:notice] = "人数は1以上の値を入力してください"
+      @room = Room.find(params[:room_id])
+      @reservation = @room.reservations.build   
+      render 'rooms/show'
+      return
+    end
+
+      if params[:commit] == "キャンセル"  
         redirect_to root_path
         return  
       end
@@ -19,10 +30,14 @@ class ReservationsController < ApplicationController
     @reservation = @room.reservations.build(reservation_params)
     @reservation.user = current_user
     @reservation.total_amount = calculate_total_price(@reservation)
+    
     if @reservation.save
         redirect_to confirm_reservation_path(@reservation)
     else
-        render 'rooms/show'
+      flash[:notice] = "日付を正しく入力してください"       
+      @room = Room.find(params[:room_id])
+      @reservation = @room.reservations.build   
+      render 'rooms/show'
     end    
   end 
 
@@ -36,7 +51,7 @@ class ReservationsController < ApplicationController
     flash[:notice] = "予約がキャンセルされました"
     redirect_to reservations_path
   end
-  
+
   def confirm
     @reservation = Reservation.find(params[:id])
   end
@@ -77,6 +92,16 @@ class ReservationsController < ApplicationController
   end
 
   def calculate_total_price(reservation)
-    (reservation.check_out_date - reservation.check_in_date).to_i * reservation.room.price * reservation.num_of_guests
+    if reservation.check_out_date.present? && reservation.check_in_date.present?
+      duration = (reservation.check_out_date - reservation.check_in_date).to_i
+      if duration > 0
+        total_price = duration * reservation.room.price * reservation.num_of_guests
+        return total_price
+      else
+        return 0
+      end
+    else
+      return 0
+    end
   end
 end

@@ -7,7 +7,14 @@ class Reservation < ApplicationRecord
   validates :check_in_date, :check_out_date, :num_of_guests, presence: true
   validate :check_in_date_is_in_future
   validate :check_out_date_is_after_check_in_date
-  validates :num_of_guests, numericality: { greater_than: 0 }
+  validates :num_of_guests, presence: true, numericality: { only_integer: true, greater_than: 0 }
+  validate :num_of_guests_validation
+  
+  def num_of_guests_validation
+    if num_of_guests.blank? || num_of_guests <= 0
+      errors.add(:num_of_guests, "は1以上の値を入力してください")
+    end
+  end
 
   def total_price
     (check_out_date - check_in_date).to_i * room.price * num_of_guests
