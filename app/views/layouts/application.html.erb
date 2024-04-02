@@ -6,39 +6,30 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <%= stylesheet_pack_tag 'application' %>
-    <%= javascript_pack_tag 'application' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag 'application' %>
   </head>
 
   <body>
    <% if flash[:notice] %>
-    <div class="notification is-info">
+    <div class="notifiation is-info">
      <p class="notice"><%= notice %></p>
     </div>
    <% end %>
 
    <% if flash[:alert] %>
-    <div class="notification is-danger">
+    <div class="notifiation is-danger">
      <p class="alert"><%= alert %></p>
     </div>
    <% end %>
 
-   <!--
    <% if user_signed_in? %>
-     <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "button" %>
+     <%= button_to "ログアウト", destroy_user_session_path, method: :delete, calss: "button" %>
    <% else %>
-     <%= link_to "ログイン", new_user_session_path, class: "button" %>
-     <%= link_to "新規登録", new_user_registration_path, class: "button" %>
+     <%= link_to "ログイン", new_user_session_path, calss: "button" %>
+     <%= link_to "新規登録", new_user_registration_path, calss: "button" %>
    <% end %>
-   -->
    
-    <%= render 'layouts/header' %>
-    
     <%= yield %>
   </body>
 </html>
