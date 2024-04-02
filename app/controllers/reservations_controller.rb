@@ -34,7 +34,7 @@ class ReservationsController < ApplicationController
     if @reservation.save
         redirect_to confirm_reservation_path(@reservation)
     else
-      flash[:notice] = "日付を正しく入力してください"       
+      flash[:notice] = "正しい日付を入力してください"       
       @room = Room.find(params[:room_id])
       @reservation = @room.reservations.build   
       render 'rooms/show'
