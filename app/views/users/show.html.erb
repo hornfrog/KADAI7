@@ -1,2 +1,21 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<%= stylesheet_link_tag 'users', 'data-turbolinks-track': 'reload' %>
+
+<div class="user-wrapper">
+  <div class="user-settings">
+   <%= link_to "アカウント設定", user_path(current_user) %><br>
+   <%= link_to 'プロフィール', user_profile_path(current_user) %>
+  </div>
+
+  <div class="user-info">
+  <h2>アカウント</h2><%= link_to '編集', edit_user_path(current_user) %>
+   <h3>メールアドレス</h3>
+   <%= @user.email %>
+   <h3>パスワード</h3>
+   <%= @user.password %>
+   *********
+  </div>
+</div>
+
+<%= render 'layouts/footer' %>
+
+ 
